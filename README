@@ -1,0 +1,35 @@
+------------------
++ sorter_threaded +
+------------------
+
+A C++ library for doing a threaded sort.  
+
+Brief description
+-----------------
+
+This library contains the class SorterThreaded which has a sort()
+method that uses OpenMP threading.  This is a header only template 
+library.  
+
+SorterThreaded class
+--------------------
+
+Basic usage is with default options for the constructor.  The sort()
+method takes an iterator to the beginning and end of the vector to be
+sorted.
+
+You optionally specify the maximum number of threads with the first
+constructor argument.  The default for this option is -1 which will
+use the OpenMP environment to determine the number of threads.  The
+second optional constructor argument is the "taskFactor" which
+determines how many threaded tasks the sort will be broken up into.
+The number of tasks is taskFactor times the number of threads.  The
+default for taskFactor is 8.
+
+Compile options
+---------------
+
+If the STL sort on your system is thread safe then compile with
+-DSTL_THREAD_SAFE to use the built in sort as the basic sort.
+Otherwise a thread safe quick sort is implemented and will be used.
+
