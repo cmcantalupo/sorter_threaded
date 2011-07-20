@@ -1,6 +1,6 @@
-------------------
+-------------------
 + sorter_threaded +
-------------------
+-------------------
 
 A C++ library for doing a threaded sort.  
 
