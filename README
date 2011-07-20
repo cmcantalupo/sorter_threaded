@@ -18,13 +18,20 @@ Basic usage is with default options for the constructor.  The sort()
 method takes an iterator to the beginning and end of the vector to be
 sorted.
 
-You optionally specify the maximum number of threads with the first
-constructor argument.  The default for this option is -1 which will
-use the OpenMP environment to determine the number of threads.  The
-second optional constructor argument is the "taskFactor" which
-determines how many threaded tasks the sort will be broken up into.
-The number of tasks is taskFactor times the number of threads.  The
-default for taskFactor is 8.
+You can optionally specify the task factor with the first constructor
+argument.  This determines how many threaded tasks the sort will be
+broken up into.  The default for the task factor is 8.  This should
+provide enough tasks to balance the non-uniform size of chunks to be
+sorted without creating so many tasks that the partition step becomes
+overwhelming.  The number of tasks is the task factor times the number
+of threads.  The partitioning step is
+O(distance(begin,end)*log(numTasks)) in time.
+
+The second optional constructor argument is the maximum number of
+threads.  The default for this option is -1 which will use the OpenMP
+environment to determine the number of threads.  This parameter is
+ignored if it is larger than the maximum number of threads in the
+OpenMP environment.
 
 Compile options
 ---------------
